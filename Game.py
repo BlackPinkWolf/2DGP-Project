@@ -1,11 +1,7 @@
 from pico2d import *
 
-import game_world
-from grass import Grass
-from boy import Boy
-
-
-# Game object class here
+import Game_World
+from Smurf import Smurf
 
 
 def handle_events():
@@ -18,34 +14,26 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
         else:
-            boy.handle_event(event)
+            smurf.handle_event(event)
 
 
 def reset_world():
     global running
-    global grass
-    global grass1
-    global team
-    global boy
+    global smurf
 
     running = True
 
-    boy = Boy()
-    game_world.add_object(boy, 1)
-
-    grass = Grass()
-    game_world.add_object(grass, 0)
-    grass2 = Grass(400, 70)
-    game_world.add_object(grass2, 2)
+    smurf = Smurf()
+    Game_World.add_object(smurf, 0)
 
 
 def update_world():
-    game_world.update()
+    Game_World.update()
 
 
 def render_world():
     clear_canvas()
-    game_world.render()
+    Game_World.render()
     update_canvas()
 
 
