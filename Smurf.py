@@ -38,5 +38,5 @@ class Smurf:
         pass
 
     def draw(self):
-        self.image.clip_draw(self.frame * 100,100, 100, 100, self.x, self.y)
+        self.image.clip_draw(self.frame * 100, 100, 100, 130, self.x, self.y)
         pass
