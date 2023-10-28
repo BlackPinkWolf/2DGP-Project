@@ -2,6 +2,7 @@ from pico2d import *
 
 import Game_World
 from Smurf import Smurf
+from Snow import Snow
 
 
 def handle_events():
@@ -20,11 +21,15 @@ def handle_events():
 def reset_world():
     global running
     global smurf
+    global snow
 
     running = True
 
+    snow = Snow()
+    Game_World.add_object(snow,0)
+
     smurf = Smurf()
-    Game_World.add_object(smurf, 0)
+    Game_World.add_object(smurf, 1)
 
 
 def update_world():

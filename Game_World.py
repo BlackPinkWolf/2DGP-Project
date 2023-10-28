@@ -1,7 +1,7 @@
 #게임월드 모듈
 
 #게임월드 표현
-world=[[]]
+world=[[],[]]
 
 #게임월드에 객체 담기
 def add_object(o,depth=0):

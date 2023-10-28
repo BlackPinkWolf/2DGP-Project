@@ -54,11 +54,6 @@ class StateMachine:
 
 
 
-
-
-
-
-
 class Smurf:
     def __init__(self):
         self.x, self.y = 400, 90
