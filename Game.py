@@ -1,7 +1,7 @@
 from pico2d import *
 
 import Game_World
-from Smurf import Smurf
+from Smurf import Boy
 from Snow import Snow
 
 
@@ -28,7 +28,7 @@ def reset_world():
     snow = Snow()
     Game_World.add_object(snow,0)
 
-    smurf = Smurf()
+    smurf = Boy()
     Game_World.add_object(smurf, 1)
 
 
