@@ -20,8 +20,6 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.change_mode(title_mode)
-        elif event.type == SDL_KEYDOWN and event.key == SDLK_i:
-            game_framework.push_mode(item_mode)#finish호출안됌
         else:
             boy.handle_event(event)
 

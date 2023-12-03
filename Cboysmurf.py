@@ -31,8 +31,6 @@ def time_out(e):
 # time_out = lambda e : e[0] == 'TIME_OUT'
 
 
-
-
 # Boy Run Speed
 PIXEL_PER_METER = (10.0 / 0.3)  # 10 pixel 30 cm
 RUN_SPEED_KMPH = 20.0  # Km / Hour
@@ -99,7 +97,7 @@ class Run:
 
     @staticmethod
     def do(boy):
-        boy.x += 10 * boy.dir
+        boy.x += 1 * boy.dir
         pass
 
     @staticmethod
