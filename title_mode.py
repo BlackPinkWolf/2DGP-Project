@@ -1,4 +1,4 @@
-from pico2d import get_events, load_image, clear_canvas, update_canvas, get_time
+from pico2d import *
 from sdl2 import SDL_QUIT, SDL_KEYDOWN, SDLK_ESCAPE, SDLK_SPACE
 
 import game_framework
@@ -7,7 +7,13 @@ import play_mode
 
 def init():
     global image
+    global bgm
+    bgm = load_music('enchanted-chimes-177906.mp3')
+    bgm.set_volume(64)
+    bgm.play()
+
     image = load_image('Atitle.png')
+
 
     pass
 def finish():
