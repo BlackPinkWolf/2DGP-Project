@@ -2,10 +2,14 @@
 
 from pico2d import get_time, load_image, SDL_KEYDOWN, SDL_KEYUP, SDLK_SPACE, SDLK_LEFT, SDLK_RIGHT
 
+import finish_mode
 import game_world
 from pico2d import get_time, load_image, load_font, clamp, SDL_KEYDOWN, SDL_KEYUP, SDLK_SPACE, SDLK_LEFT, SDLK_RIGHT, \
     draw_rectangle
 import game_framework
+import play_mode
+import title_mode
+
 
 # state event check
 # ( state event type, event value )
@@ -152,6 +156,7 @@ class Boy:
         self.frame = 0
         self.dir = 0
         self.speed = 1
+        self.heart = 1
         self.image = load_image('Aboy smurf run.png')
         self.font = load_font('ENCR10B.TTF', 24)
         self.state_machine = StateMachine(self)
@@ -159,16 +164,18 @@ class Boy:
 
 
     def update(self):
-        pass
         self.state_machine.update()
+        if self.heart == 0:
+            game_framework.change_mode(finish_mode)
+
 
     def handle_event(self, event):
-        pass
         self.state_machine.handle_event(('INPUT', event))
 
     def draw(self):
         self.state_machine.draw()
         self.font.draw(self.x - 40, self.y + 60, f'Speed:{self.speed:02d}', (255, 0, 0))
+        self.font.draw(self.x - 40, self.y + 80, f'Heart:{self.heart:02d}', (255, 0, 0))
         draw_rectangle(*self.get_bb())
         pass
 
@@ -178,3 +185,7 @@ class Boy:
     def handle_collision(self,group,other):
         if group=='boy:item':
             self.speed +=1
+        if group=='boy:tree':
+            self.heart -= 1
+        if group == 'boy:rock':
+            self.heart -= 1

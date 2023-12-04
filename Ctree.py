@@ -40,4 +40,6 @@ class Tree:
     def get_bb(self):
         return self.x-40,self.y-60,self.x+40,self.y+60
 
-
+    def handle_collision(self,group,other):
+        if group == 'boy:tree':
+            game_world.remove_object(self)

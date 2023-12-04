@@ -22,7 +22,7 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-            game_framework.change_mode(title_mode)
+            game_framework.quit()
         else:
             boy.handle_event(event)
 
@@ -66,9 +66,18 @@ def init():
     for i in item:
         game_world.add_collision_pair('boy:item', None, i)
 
+    game_world.add_collision_pair('boy:tree', boy, None)
+
+    for t in tree:
+        game_world.add_collision_pair('boy:tree', None, t)
+
+    game_world.add_collision_pair('boy:rock', boy, None)
+
+    for r in rock:
+        game_world.add_collision_pair('boy:rock', None, r)
+
 
 def update():
-
     game_world.update()
     game_world.handle_collisions()
 
