@@ -115,13 +115,26 @@ class Jump:
     @staticmethod
     def do(boy):
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time)
-        if boy.frame > 6:
+        if boy.frame > 7:
             boy.state_machine.handle_event(('TIME_OUT', 0))
         pass
 
     @staticmethod
     def draw(boy):
-        boy.image_jump.clip_draw(int(boy.frame) * 80, 0, 80, 137, boy.x, boy.y)
+        if boy.frame < 1:
+            boy.image_jump1.clip_draw(0, 0, 128, 163, boy.x, boy.y)
+        elif boy.frame < 2:
+            boy.image_jump2.clip_draw(0, 0, 107, 142, boy.x, boy.y)
+        elif boy.frame < 3:
+            boy.image_jump3.clip_draw(0, 0, 120, 134, boy.x, boy.y)
+        elif boy.frame < 4:
+            boy.image_jump4.clip_draw(0, 0, 120, 126, boy.x, boy.y)
+        elif boy.frame < 5:
+            boy.image_jump5.clip_draw(0, 0, 138, 195, boy.x, boy.y)
+        elif boy.frame < 6:
+            boy.image_jump6.clip_draw(0, 0, 147, 87, boy.x, boy.y)
+        elif boy.frame < 7:
+            boy.image_jump7.clip_draw(0, 0, 155, 115, boy.x, boy.y)
 
 
 class StateMachine:
@@ -131,7 +144,7 @@ class StateMachine:
         self.transitions = {
             Idle: {right_down: Run, left_down: Run, left_up: Run, right_up: Run, space_down: Jump},
             Run: {right_down: Idle, left_down: Idle, right_up: Idle, left_up: Idle, space_down: Jump},
-            Jump: {time_out: Idle}
+            Jump: {right_down: Run, left_down: Run, left_up: Run, right_up: Run,time_out: Idle}
         }
 
     def start(self):
@@ -194,7 +207,7 @@ class Boy:
     def handle_collision(self,group,other):
         if group=='boy:item':
             self.speed +=1
-        if group=='boy:tree':
+        if group=='boy:tree' :
             self.heart -= 1
-        if group == 'boy:rock':
+        if group == 'boy:rock' and self.state_machine.cur_state != Jump:
             self.heart -= 1
