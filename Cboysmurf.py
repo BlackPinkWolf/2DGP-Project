@@ -182,6 +182,7 @@ class Boy:
         self.image_jump6 = load_image('2-6.png')
         self.image_jump7 = load_image('2-7.png')
         self.font = load_font('ENCR10B.TTF', 24)
+        self.font1 = load_font('Cafe24Moyamoya-Face-v1.0.otf', 30)
         self.state_machine = StateMachine(self)
         self.state_machine.start()
 
@@ -198,6 +199,7 @@ class Boy:
     def draw(self):
         self.state_machine.draw()
         self.font.draw(self.x - 40, self.y + 60, f'Speed:{self.speed:02d}', (255, 0, 0))
+        self.font1.draw(50,  50, f'Time:{get_time()}', (100, 100, 100))
         draw_rectangle(*self.get_bb())
         pass
 
