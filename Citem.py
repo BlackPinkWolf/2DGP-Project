@@ -23,7 +23,7 @@ FRAMES_PER_ACTION = 10.0
 class Item:
     def __init__(self):
         self.image = load_image('Aitem resources.png')
-        self.x, self.y = random.randint(50, 750), random.randint(-1200, -100)
+        self.x, self.y = random.randint(50, 750), random.randint(-12000, -100)
         self.speed = 3
 
     def update(self):
@@ -39,5 +39,9 @@ class Item:
 
     def get_bb(self):
         return self.x-20,self.y-20,self.x+20,self.y+20
+
+    def handle_collision(self,group,other):
+        if group == 'boy:item':
+            game_world.remove_object(self)
 
 

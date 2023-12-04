@@ -35,9 +35,12 @@ def init():
     global rock
     global item
     global bgm
+
+    
     bgm = load_music('snow-132947.mp3')
     bgm.set_volume(64)
     bgm.play()
+
 
 
     background1 = Background1()
@@ -55,11 +58,22 @@ def init():
     rock = [Rock() for _ in range(5)]
     game_world.add_objects(rock, 1)
 
-    item = [Item() for _ in range(2)]
+    item = [Item() for _ in range(9)]
     game_world.add_objects(item, 1)
 
+    game_world.add_collision_pair('boy:item', boy, None)
+
+    for i in item:
+        game_world.add_collision_pair('boy:item', None, i)
+
+
 def update():
+
     game_world.update()
+    game_world.handle_collisions()
+
+        
+    
 
 def draw():
     clear_canvas()

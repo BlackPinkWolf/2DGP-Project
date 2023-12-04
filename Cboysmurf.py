@@ -174,3 +174,7 @@ class Boy:
 
     def get_bb(self):
         return self.x-30,self.y-60,self.x+30,self.y+60
+
+    def handle_collision(self,group,other):
+        if group=='boy:item':
+            self.speed +=1
