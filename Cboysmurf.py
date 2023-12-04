@@ -204,7 +204,6 @@ class Boy:
         time_elapsed = get_time() - self.start_time
         self.finish_time = f'{time_elapsed:.2f}'
         self.font1.draw(50, 50, f'Time: {self.finish_time}', (100, 100, 100))
-        draw_rectangle(*self.get_bb())
         pass
 
     def get_bb(self):

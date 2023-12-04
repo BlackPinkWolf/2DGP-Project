@@ -80,9 +80,6 @@ def update():
     game_world.update()
     game_world.handle_collisions()
 
-        
-    
-
 def draw():
     clear_canvas()
     game_world.render()
