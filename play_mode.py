@@ -7,6 +7,7 @@ import game_framework
 from Cbackground1 import Background1
 from Cbackground2 import Background2
 from Cboysmurf import Boy
+from Citem import Item
 from Crock import Rock
 from Ctree import Tree
 
@@ -32,6 +33,7 @@ def init():
     global boy
     global tree
     global rock
+    global item
     global bgm
     bgm = load_music('snow-132947.mp3')
     bgm.set_volume(64)
@@ -52,6 +54,9 @@ def init():
 
     rock = [Rock() for _ in range(5)]
     game_world.add_objects(rock, 1)
+
+    item = [Item() for _ in range(2)]
+    game_world.add_objects(item, 1)
 
 def update():
     game_world.update()

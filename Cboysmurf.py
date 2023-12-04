@@ -96,7 +96,26 @@ class Run:
     def draw(boy):
         boy.image.clip_draw(int(boy.frame) * 80, 0, 80, 137, boy.x, boy.y)
 
+class Jump:
 
+    @staticmethod
+    def enter(boy, e):
+        boy.dir = 0
+        boy.frame = 0
+        pass
+
+    @staticmethod
+    def exit(boy, e):
+        pass
+
+    @staticmethod
+    def do(boy):
+        boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 7
+        pass
+
+    @staticmethod
+    def draw(boy):
+        boy.image.clip_draw(int(boy.frame) * 80, 0, 80, 137, boy.x, boy.y)
 
 
 class StateMachine:
@@ -139,7 +158,6 @@ class Boy:
         self.state_machine.start()
 
 
-
     def update(self):
         pass
         self.state_machine.update()
@@ -150,7 +168,7 @@ class Boy:
 
     def draw(self):
         self.state_machine.draw()
-        self.font.draw(self.x - 15, self.y + 60, f'{self.speed:02d}', (255, 0, 0))
+        self.font.draw(self.x - 40, self.y + 60, f'Speed:{self.speed:02d}', (255, 0, 0))
         draw_rectangle(*self.get_bb())
         pass
 
