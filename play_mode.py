@@ -32,6 +32,10 @@ def init():
     global boy
     global tree
     global rock
+    global bgm
+    bgm = load_music('snow-132947.mp3')
+    bgm.set_volume(64)
+    bgm.play()
 
 
     background1 = Background1()
@@ -52,7 +56,6 @@ def init():
 def update():
     game_world.update()
 
-
 def draw():
     clear_canvas()
     game_world.render()
@@ -62,7 +65,9 @@ def finish():
     pass
 def pause():
     boy.wait_time=100000000000000000000000000000000.0
+    bgm.pause()
     pass
 def resume():
     boy.wait_time=get_time()
+    bgm.resume()
     pass

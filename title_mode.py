@@ -8,6 +8,7 @@ import play_mode
 def init():
     global image
     image = load_image('Atitle.png')
+
     pass
 def finish():
     pass
