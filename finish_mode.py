@@ -1,6 +1,5 @@
 from pico2d import *
 from sdl2 import SDL_QUIT, SDL_KEYDOWN, SDLK_ESCAPE, SDLK_SPACE
-
 import game_framework
 import play_mode
 
@@ -24,6 +23,8 @@ def update():
 def draw():
     clear_canvas()
     image.clip_draw(0, 0, 1080, 554, 400, 300, 800, 600)
+    font = load_font('Cafe24Moyamoya-Face-v1.0.otf', 30)
+    font.draw(50, 50, f'Time: {play_mode.boy.finish_time}', (250, 0, 0))
     update_canvas()
     pass
 def handle_events():

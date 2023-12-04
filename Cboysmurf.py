@@ -173,6 +173,8 @@ class Boy:
         self.dir = 0
         self.speed = 1
         self.heart = 1
+        self.start_time = get_time()
+        self.finish_time = 0
         self.image = load_image('Aboy smurf run.png')
         self.image_jump1 = load_image('2-1.png')
         self.image_jump2 = load_image('2-2.png')
@@ -199,7 +201,9 @@ class Boy:
     def draw(self):
         self.state_machine.draw()
         self.font.draw(self.x - 40, self.y + 60, f'Speed:{self.speed:02d}', (255, 0, 0))
-        self.font1.draw(50,  50, f'Time:{get_time()}', (100, 100, 100))
+        time_elapsed = get_time() - self.start_time
+        self.finish_time = f'{time_elapsed:.2f}'
+        self.font1.draw(50, 50, f'Time: {self.finish_time}', (100, 100, 100))
         draw_rectangle(*self.get_bb())
         pass
 
