@@ -29,7 +29,7 @@ class Rock:
     def update(self):
         self.y += RUN_SPEED_PPS * game_framework.frame_time * self.speed
         if self.y > 800:
-            self.x, self.y = random.randint(100, 700), random.randint(-1200, -100)
+            self.x, self.y = random.randint(50, 750), random.randint(-1200, -100)
         pass
 
 

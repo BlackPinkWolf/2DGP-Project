@@ -114,12 +114,14 @@ class Jump:
 
     @staticmethod
     def do(boy):
-        boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 7
+        boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time)
+        if boy.frame > 6:
+            boy.state_machine.handle_event(('TIME_OUT', 0))
         pass
 
     @staticmethod
     def draw(boy):
-        boy.image.clip_draw(int(boy.frame) * 80, 0, 80, 137, boy.x, boy.y)
+        boy.image_jump.clip_draw(int(boy.frame) * 80, 0, 80, 137, boy.x, boy.y)
 
 
 class StateMachine:
@@ -127,8 +129,9 @@ class StateMachine:
         self.boy = boy
         self.cur_state = Idle
         self.transitions = {
-            Idle: {right_down: Run, left_down: Run, left_up: Run, right_up: Run, space_down: Idle},
-            Run: {right_down: Idle, left_down: Idle, right_up: Idle, left_up: Idle, space_down: Run}
+            Idle: {right_down: Run, left_down: Run, left_up: Run, right_up: Run, space_down: Jump},
+            Run: {right_down: Idle, left_down: Idle, right_up: Idle, left_up: Idle, space_down: Jump},
+            Jump: {time_out: Idle}
         }
 
     def start(self):
@@ -158,6 +161,13 @@ class Boy:
         self.speed = 1
         self.heart = 1
         self.image = load_image('Aboy smurf run.png')
+        self.image_jump1 = load_image('2-1.png')
+        self.image_jump2 = load_image('2-2.png')
+        self.image_jump3 = load_image('2-3.png')
+        self.image_jump4 = load_image('2-4.png')
+        self.image_jump5 = load_image('2-5.png')
+        self.image_jump6 = load_image('2-6.png')
+        self.image_jump7 = load_image('2-7.png')
         self.font = load_font('ENCR10B.TTF', 24)
         self.state_machine = StateMachine(self)
         self.state_machine.start()
@@ -175,7 +185,6 @@ class Boy:
     def draw(self):
         self.state_machine.draw()
         self.font.draw(self.x - 40, self.y + 60, f'Speed:{self.speed:02d}', (255, 0, 0))
-        self.font.draw(self.x - 40, self.y + 80, f'Heart:{self.heart:02d}', (255, 0, 0))
         draw_rectangle(*self.get_bb())
         pass
 
