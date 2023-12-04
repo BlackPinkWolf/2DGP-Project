@@ -20,20 +20,20 @@ FRAMES_PER_ACTION = 10.0
 
 
 
-class Tree:
+class Rock:
     def __init__(self):
-        self.image = load_image('Atree.png')
-        self.x, self.y = random.randint(100, 700), random.randint(-1200, -100)
+        self.image = load_image('Arock.png')
+        self.x, self.y = random.randint(50, 750), random.randint(-1200, -100)
         self.speed = 3
 
     def update(self):
         self.y += RUN_SPEED_PPS * game_framework.frame_time * self.speed
-        if self.y > 1000:
-            self.x, self.y = random.randint(100, 700), -50
+        if self.y > 800:
+            self.x, self.y = random.randint(100, 700), random.randint(-1200, -100)
         pass
 
 
     def draw(self):
-        self.image.draw(self.x, self.y, self.image.w * 2, self.image.h * 2)
+        self.image.draw(self.x, self.y, self.image.w * 0.5, self.image.h * 0.5)
 
 

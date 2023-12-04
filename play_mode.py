@@ -7,6 +7,7 @@ import game_framework
 from Cbackground1 import Background1
 from Cbackground2 import Background2
 from Cboysmurf import Boy
+from Crock import Rock
 from Ctree import Tree
 
 
@@ -30,6 +31,7 @@ def init():
     global background2
     global boy
     global tree
+    global rock
 
 
     background1 = Background1()
@@ -39,10 +41,13 @@ def init():
     game_world.add_object(background2, 0)
 
     boy = Boy()
-    game_world.add_object(boy, 1)
+    game_world.add_object(boy, 2)
 
     tree = [Tree() for _ in range(5)]
     game_world.add_objects(tree, 1)
+
+    rock = [Rock() for _ in range(5)]
+    game_world.add_objects(rock, 1)
 
 def update():
     game_world.update()
