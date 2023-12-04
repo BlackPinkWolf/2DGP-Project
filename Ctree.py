@@ -35,5 +35,9 @@ class Tree:
 
     def draw(self):
         self.image.draw(self.x, self.y, self.image.w * 2, self.image.h * 2)
+        draw_rectangle(*self.get_bb())
+
+    def get_bb(self):
+        return self.x-40,self.y-60,self.x+40,self.y+60
 
 
