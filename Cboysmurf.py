@@ -134,7 +134,7 @@ class Boy:
         self.dir = 0
         self.speed = 1
         self.image = load_image('Aboy smurf run.png')
-
+        self.font = load_font('ENCR10B.TTF', 24)
         self.state_machine = StateMachine(self)
         self.state_machine.start()
 
@@ -150,5 +150,9 @@ class Boy:
 
     def draw(self):
         self.state_machine.draw()
+        self.font.draw(self.x - 15, self.y + 60, f'{self.speed:02d}', (255, 0, 0))
+        draw_rectangle(*self.get_bb())
         pass
 
+    def get_bb(self):
+        return self.x-30,self.y-60,self.x+30,self.y+60
